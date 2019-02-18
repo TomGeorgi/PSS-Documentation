@@ -12,7 +12,10 @@ You want to get a LaTeX template ? Please visit his [GitHub Template Branch](htt
 ### Folders
 -  `content/`: This directory contains the file content.
 -  `format/`: This directory includes packages, configuration, etc.
-	> **Note**: If you need to create a new code style, feel free to watch the file **python_code** as example, which is contained in this folder.
+	
+	> **Note**: If you need to create a new code style, feel free to watch the file **python_code** as example, which is 
+	contained in this folder.
+	
 -  `graphics/`: This directory contains all used graphics.
 
 ### Files
