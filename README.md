@@ -19,9 +19,12 @@ If you want to use [Travis-CI](https://travis-ci.org/) as your Continuous Integr
 5. Visit [Travis-CI](https://travis-ci.org/) again and go to your activate repository
 6.  Click on the repository settings 
 
-![](https://github.com/TomGeorgi/PSS-Documentation/blob/template/graphics/readme_graphics/travis_repo_settings.png).
+![](https://github.com/TomGeorgi/PSS-Documentation/blob/template/graphics/readme_graphics/travis_repo_settings.png)
 
-7. Generate a new Environment Variable named **GH_TOKEN** and insert your token as value.
+7. Generate a new Environment Variable named *GH_TOKEN* and insert your token as value.
+
+![](https://github.com/TomGeorgi/PSS-Documentation/blob/template/graphics/readme_graphics/gh_token.png)
+
 8. That's all.
 
 ## Create a Release
