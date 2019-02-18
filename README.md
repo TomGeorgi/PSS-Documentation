@@ -1,30 +1,25 @@
-# PSS-Documentation [![Build Status](https://travis-ci.org/TomGeorgi/PSS-Documentation.svg?branch=master)](https://travis-ci.org/TomGeorgi/PSS-Documentation)
+# PSS-Documentation Template
+## How to set up your CI
 
-This repository contains the documentation of my practical semestre, which I absolved in WS18/19.
-Also, the main.pdf will be build via Travis-CI and can be found in [releases](https://github.com/TomGeorgi/PSS-Documentation/releases).
+If you want to use [Travis-CI](https://travis-ci.org/) as your Continuous Integration please follow this few steps:
 
-## Prolog
-Thank you to [Lorenz Bung](https://github.com/LorenzBung), who provided a LaTeX-Template.
-You want to get a LaTeX template ? Please visit his [GitHub Template Branch](https://github.com/LorenzBung/doku-pss/tree/template).
+1. Visit [Travis-CI](https://travis-ci.org/) and Sign In with youru GitHub Account
+2. Go to your Profile settings [](https://github.com/TomGeorgi/PSS-Documentation/tree/template/graphics/readme_graphics/github_settings.png)
+3. Enable Travis for your forked repository [](https://github.com/TomGeorgi/PSS-Documentation/tree/template/graphics/readme_graphics/enable_travis.png)
+4. Go to your [GitHub Token Settings](https://github.com/settings/tokens) and generate a new token which includes the same access rights like the example picture below and copy this token. [](https://github.com/TomGeorgi/PSS-Documentation/tree/template/graphics/readme_graphics/token_settings.png)
+5. Visit [Travis-CI](https://travis-ci.org/) again and go to your activate repository
+6.  Click on the repository settings [](https://github.com/TomGeorgi/PSS-Documentation/tree/template/graphics/readme_graphics/travis_repo_settings.png).
+7. Generate a new Environment Variable named **GH_TOKEN** and insert your token as value.
+8. That's all.
 
-## Content of this repository
+## Create a Release
+```bash
+git add files/ you want/ to/commit
+git commit -m "Message"
+git tag tag-name
+git push -u origin master --tags
+```
 
-### Folders
--  `content/`: This directory contains the file content.
--  `format/`: This directory includes packages, configuration, etc.
-	> **Note**: If you need to create a new code style, feel free to watch the file **python_code** as example, which is contained in this folder.
--  `graphics/`: This directory contains all used graphics.
 
-### Files
-- `main.tex`: main LaTeX-file.
-- `format/packages.tex`: This file includes all needed packages.
-- `format/python_code.tex`:  This file defines a source code environment for python via using the package **lstlistings**.
 
-### Continuous Integration
 
-- `Travis-CI`: pipeline for creating and releasing a PDF-file.
-- `Docker`: [Docker Image](https://hub.docker.com/r/dxjoke/tectonic-docker) which I use in Travis-CI to create a PDF-File from LaTeX-Files.
-
-## How to use this repository
-
-If you want to use this repository please go to the template and read the Tutorial in the **Readme**.
