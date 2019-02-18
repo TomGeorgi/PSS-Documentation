@@ -9,6 +9,8 @@ script:
   
 deploy:
     provider: releases
+    api_key:
+        secure: 716ae474fe465a972c1e4a6043657269f4533183
     file:
     - $TRAVIS_BUILD_DIR/main.pdf
     skip_cleanup: true
