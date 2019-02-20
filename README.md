@@ -1,7 +1,7 @@
 # PSS-Documentation [![Build Status](https://travis-ci.org/TomGeorgi/PSS-Documentation.svg?branch=master)](https://travis-ci.org/TomGeorgi/PSS-Documentation)
 
 This repository contains the documentation of my practical semestre, which I absolved in WS18/19.
-Also, the main.pdf will be build via Travis-CI and can be found in [releases](https://github.com/TomGeorgi/PSS-Documentation/releases).
+Also, the main.pdf will be build via Travis-CI. The newest version can be found in [releases](https://github.com/TomGeorgi/PSS-Documentation/releases).
 
 ## Prolog
 Thank you to [Lorenz Bung](https://github.com/LorenzBung), who provided a LaTeX-Template.

@@ -7,3 +7,7 @@
 *.toc
 *.pdf
 *.synctex.gz
+*.bbl
+*.blg
+*.run.xml
+*.bcf

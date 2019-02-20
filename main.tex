@@ -8,7 +8,7 @@
 % Include packages
 \include{format/packages}
 \include{format/python_code}
-
+\addbibresource{bibliography/norms.bib}
 %+----------------+
 %| Document style |
 %+----------------+
@@ -77,6 +77,7 @@
 {\let\newpage\relax\maketitle}
 \end{titlepage}
 
+
 %+----------+
 %| Abstract |
 %+----------+
@@ -96,44 +97,45 @@ Ich werde im Verlaufe dieses Berichts mehrere Aufgaben im Detail erklären.
 \tableofcontents
 \pagebreak
 
-%+-------------------+
-%| List of Listings, |
-%| List of Figures,  |
-%| List of Tables    |
-%+-------------------+
+%+----------------------+
+%| List of Listings, 	|
+%| List of Figures,  	|
+%| List of Tables    	|
+%| List of Norms	 	|
+%| List of Abbreviation |
+%+----------------------+
 \begingroup
 \let\clearpage\relax
 \lstlistoflistings
 \listoffigures
 \listoftables
+\printbibliography
 \endgroup
 \pagebreak
 
 %+---------+
 %| Vorwort |
 %+---------+
-%\pagenumbering{arabic} % turn page numbering on now
-%\setcounter{chapter}{-1} % Makes numbering start at 0, so ``real'' chapters start at 1.
-%\include{content/vorwort}
-
+\pagenumbering{arabic} % turn page numbering on now
+\setcounter{chapter}{-1} % Makes numbering start at 0, so ``real'' chapters start at 1.
 \include{content/vorwort}
 
 %+-----------+
 %| Kapitel 1 |
 %+-----------+
-%\include{content/ivs}
+\include{content/pia}
 
 
 %+-----------+
 %| Kapitel 2 |
 %+-----------+
-%\include{content/jira}
+%\include{content/}
 
 
 %+-----------+
 %| Kapitel 3 |
 %+-----------+
-%\include{content/mikado}
+%\include{content/}
 
 %+-----------+
 %|   Fazit   |
@@ -145,6 +147,7 @@ Ich werde im Verlaufe dieses Berichts mehrere Aufgaben im Detail erklären.
 %+--------------------------+
 %\include{content/erklaerung}
 
+\include{bibliography/abbreviation}
 
 %+==============+
 %| DOCUMENT END |
