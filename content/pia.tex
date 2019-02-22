@@ -120,7 +120,8 @@ Um zu garantieren, dass die Softwarequalität bestehen bleibt, habe ich auf dem 
 \label{subsec:gitlab_runner}
 
 Um den Runner nicht jedes mal beim einchecken neu aufbauen zu müssen und die Daten immer mit 
-den selben Eigenschaften eingecheckt werden, habe ich ein \cite{Docker} Image, ein Speicherabbild eines Containers, erstellt.
+den selben Eigenschaften eingecheckt werden, habe ich ein \cite{Docker} Image, ein 
+Speicherabbild eines Containers, erstellt.
 
 \cite{Docker} wird zur Isolierung von Anwendungen mit Containervirtualisierung genutzt. Diese 
 Container gewährleisten die Trennung und Verwaltung der auf dem Rechner genutzten Ressourcen 
@@ -135,7 +136,10 @@ transportieren und installieren lassen.
 \end{figure}
 
 In Abbildung \ref{fig:pipeline} stellt die Pipeline die Schritte dar, die durchlaufen werden.
-Dazu gehört die Erstellung einer \ac{api} aus den Python Doc-Strings, die Code Kompilierung, das durchlaufen der Unit Tests und das durchlaufen von \cite{Pylint}. \cite{Pylint} ist ein statisches Codeanalyse Tool, das unter anderem den Code auf die Einhaltung der in \cite{PEP8} beschriebenen Regeln prüft.
+Dazu gehört die Erstellung einer \ac{api} aus den Python Doc-Strings, die Code Kompilierung, 
+das durchlaufen der Unit Tests und das durchlaufen von \cite{Pylint}. \cite{Pylint} ist ein 
+statisches Codeanalyse Tool, das unter anderem den Code auf die Einhaltung der in \cite{PEP8} 
+beschriebenen Regeln prüft.
 
 
 \subsection{Einlesen von CSV-Dateien}
