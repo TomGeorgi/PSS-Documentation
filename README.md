@@ -5,7 +5,7 @@ Also, the main.pdf will be build via Travis-CI. The newest version can be found 
 
 ## Prolog
 Thank you to [Lorenz Bung](https://github.com/LorenzBung), who provided a LaTeX-Template.
-You want to get a LaTeX template ? Please visit his [GitHub Template Branch](https://github.com/LorenzBung/doku-pss/tree/template).
+You want to get a LaTeX template ? Then visit Lorenz Bung for a [Template](https://github.com/LorenzBung/doku-pss/tree/template).
 
 ## Content of this repository
 
@@ -30,4 +30,4 @@ You want to get a LaTeX template ? Please visit his [GitHub Template Branch](htt
 
 ## How to use this repository
 
-If you want to use this repository please go to the template and read the Tutorial in the **Readme**.
+If you want to use this repository please go to the template branch and follow the instructions for setup your own **Continuous Integration**.
