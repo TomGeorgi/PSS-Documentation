@@ -21,6 +21,16 @@ besitzt.
 werden, einlesen und nur durch eine vom Mitarbeiter angefertigte Konfigurationsdatei
 automatisieren und verarbeiten.
 
+\pagebreak
+Abbildung \ref{fig:flight_unit} zeigt den Aufgebauten Test an einer Flight Unit\footnote{\url{https://www.diehl.com/aviation/de/portfolio/avionics/}}, welcher noch von Hand abgearbeitet wurde.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth, height=0.6\textwidth]{graphics/PinInjectionTest_FlightUnit.jpg}
+	\caption{Pin-Injection Test Flight Unit}
+	\label{fig:flight_unit}
+\end{figure}
+
 
 \section{Projekteinarbeitung}
 \label{sec:prj-einarbeitung}
@@ -130,7 +140,7 @@ transportieren und installieren lassen.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=1\textwidth, height=0.25\textwidth]{graphics/pipeline.png}
+	\includegraphics[width=1\textwidth, height=0.2\textwidth]{graphics/pipeline.png}
 	\caption{Konfigurierte Pipeline}
 	\label{fig:pipeline}
 \end{figure}
@@ -145,27 +155,41 @@ beschriebenen Regeln prüft.
 \subsection{Einlesen von CSV-Dateien}
 \label{subsec:read_csv}
 
-\begin{python}
-def read_data(self, path):
-	with open(path, 'r', newline='\r\n') as data:
-    	reader = csv.DictReader(self.__skip_comments(data), delimiter=';')
-        test_data = []
-        for row in reader:
-	        test_data.append(row)
+Ein großer Bestandteil des Programms waren die eingelesenen Daten, welche in einem \ac{csv}-Dateiformat abgespeichert wurden. Diese Aufgabe habe ich mittels der Klasse \textit{DictReader} 
+gelöst, welche in der \cite{Python} \ac{api} vorhanden ist. Diese Klasse liest jede Zeile der 
+\ac{csv}-Datei in ein \textit{Dictionary} \ac{bzw} den Python Datentyp \textit{dict} ein. Ein 
+\textit{Dictionary} ist eine unsortierte, veränderbare und indexierte Kollektion aus 
+\textit{Key-Value-Paaren}. Die Klasse \textit{DictReader} nimmt die erste Zeile der \ac{csv}-
+Datei als \textit{Keys} und fügt die restlichen Zeilen als \textit{Values} ein. 
+Da der Reader beim einlesen von Daten sehr sensibel ist und bei einem falschen Format \ac{bzw} 
+bei falschen \textit{Key}-Werten oder auch bei falschen \textit{Value}-Werten direkt Fehler 
+wirft, mussten diese irgendwie abgefangen und behandelt werden. Ein Problem war das erkennen 
+und überspringen von Kommentaren. Kommentare haben in einer Datei immer mit dem \textit{\#}-Zeichen angefangen. 
+\pagebreak
 
-        return test_data
-            
-def __skip_comments(self, lines):
-	for index, line in enumerate(lines):
-    	line = re.sub(re.compile(r'\s*#.*$'), '', line).strip()
-        if not set(line.rstrip('\r\n').split(';')).difference(self.ref_head):
-        	self.first_line = index + 2
-        if line.startswith(';'):
-            continue
-        if line:
-            yield line
-\end{python}
+\inputpython{scripts/read_csv.py}{1}{14}{Read From CSV-File}{lst:read_csv}
+
+In dem Code Listing \ref{lst:read_csv} sieht man eine Zusammenfassung des Codes, welcher für 
+das Einlesen der Daten zuständig ist und die Python-private Methode \textit{skip\_comments()}, 
+welche Kommentare erkennen und überspringen soll. Die Kommentare sollten möglichst bevor die 
+Daten als Wert in ein \textit{Dictionary} gespeichert werden herausgefiltert werden. Dies habe 
+ich mit einem \ac{regex} (engl: Regular Expression) gelöst, welcher die Zeile nach dem 
+\textit{\#}-Zeichen absucht und falls eins gefunden wurde alle nachgehenden Zeichen inklusive 
+dem \textit{\#}-Zeichen in der Zeile subtrahiert und die subtrahiert Zeile dann wieder 
+zurückgibt.
 
 
 \subsection{Erstellung einer GUI}
 \label{subsec:create_gui}
+
+Nachdem die Textuelle Simulation abgeschlossen war machte ich mich an die Erstellung einer \ac{gui}. Da vom Projekt keine Vorgaben existierten, konnte ich bei vielen selbst Entscheiden wie diese implementiert werden.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth, height=0.75\textwidth]{graphics/GUI.png}
+	\caption{Graphical User Interface}
+	\label{fig:pipeline}
+\end{figure}
+
+Die Grafik \ref{fig:pipeline} zeigt die \ac{gui}, wie sie am Ende des Praktikums implementiert wurde. Die Tablle, welche die Zeilen anzeigt, kann den gerade laufenden Test markieren, anzeigen ob die vorherigen Tests erfolgreich durchgelaufen sind oder nicht, einzelne Zeilen zum Testen auswählen und die Zeilen nach einer bestimmten Spalte sortieren. 
+Die Tabelle wurde als virtuelle Tabelle implementiert. Das bedeutet, dass die Tabelle mit Hilfe der eingelesenen \ac{csv}-Datei indirekt adressiert wird und die Realisierung nicht direkt angesprochen wird. Damit war es sogar möglich eine \ac{csv}-Datei mit 1 Millionen Zeilen innerhalb von ca. 20-30 Sekunden einzulesen und anzuzeigen.

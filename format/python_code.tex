@@ -38,7 +38,7 @@
 language=python,
 showtabs=true,
 tab=,
-tabsize=2,
+tabsize=4,
 basicstyle=\ttfamily\footnotesize,%\setstretch{.5},
 stringstyle=\color{stringcolour},
 showstringspaces=false,
@@ -98,12 +98,13 @@ rulecolor=\color{black!40},
 %framexrightmargin=\framemargin,
 %framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{blue},#1
 %frame=tb,
+numbers=left,
 backgroundcolor=\color{white},
 breakindent=.5\textwidth,frame=single,breaklines=true%
 %}
 }
 
-\newcommand*{\inputpython}[3]{\lstinputlisting[firstline=#2,lastline=#3,firstnumber=#2,frame=single,breakindent=.5\textwidth,frame=single,breaklines=true,style=mypython]{#1}}
+\newcommand*{\inputpython}[5]{\lstinputlisting[firstline=#2,lastline=#3,firstnumber=#2,frame=single,breakindent=.5\textwidth,frame=single,breaklines=true,style=mypython,caption=#4,label={#5}]{#1}}
 
 \lstnewenvironment{python}[1][]{\lstset{style=mypython}}{}
 
