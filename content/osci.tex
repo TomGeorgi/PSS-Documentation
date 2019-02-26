@@ -1,8 +1,10 @@
-\chapter{Ansteuerung des Oszilloskop}
+\chapter{Implementierung des Oszilloskop-Moduls}
 \label{ch:osci}
 
-Im weiteren Verlauf meines Praktikums wurde mir irgendwann die Ansteuerung und die Implementierung eines Oszilloskopes zu Teil. 
-Abbildung \ref{fig:lc334am} zeigt das Lecroy LC334AM 500Mhz Oszilloskop, welches über die \ac{gpib} Schnittstelle mit dem Computer kommunizieren kann. Der \ac{gpib} von \ac{ni}\footnote{\url{http://www.ni.com/de-de.html}} ist ein Industriestandard, welcher als \ac{ieee}\footnote{\url{https://www.ieee.org/}} veröffentlicht wurde.
+Im weiteren Verlauf meines Praktikums wurde mir die Implementierung des Oszilloskop-Moduls zu 
+teil, welches für die Ansteuerung mehrerer Oszilloskope zuständig sein soll. Um dies zu testen 
+hat uns der Kunde Diehl Aviation ein LeCroy LC334AM 500MHz Oszilloskop zur Verfügung gestellt, 
+welches man in Abbildung \ref{fig:lc334am} betrachten kann.  
 
 \begin{figure}[H]
 	\centering
@@ -11,3 +13,53 @@ Abbildung \ref{fig:lc334am} zeigt das Lecroy LC334AM 500Mhz Oszilloskop, welches
 	\label{fig:lc334am}
 \end{figure}
 
+\section{Das LeCroy LC334AM 500MHz Oszilloskop}
+\label{sec:lc334am}
+
+Das LC334AM 500MHz Oszilloskop von LeCroy\footnote{\url{https://teledynelecroy.com/}} ist dato 
+schon ein etwas älteres Gerät, welches über eine \ac{gpib} Schnittstelle und eine \ac{rs232} 
+Schnittstelle zur Kommunikation mit dem Computer besitzt. Im Projekt wurde die \ac{gpib}-
+Schnittstelle für die Kommunikation implementiert, da zum Oszilloskop auch ein \ac{gpib}-zu-
+USB-Kabel von \ac{ni} mitgeliefert wurde. Der \ac{gpib}-Adapter von \ac{ni} ist ein 
+Industriestandard, welcher als \ac{ieee} veröffentlicht wurde.
+
+\section{Ansteuerung über GPIB und PyVisa}
+\label{sec:gpib}
+
+Um die Schnittstelle über \ac{gpib} ansteuern zu können war ein Treiber, welcher auf der Seite 
+von \ac{ni} zur Verfügung stand, nötig.
+Über Python wurde die Schnittstelle dann mit Hilfe des Python Paketes \textit{PyVisa}
+\footnote{\url{https://pyvisa.readthedocs.io/en/master/}} angesteuert. Dieses Paket ermöglicht 
+es einem alle Arten von Messgeräten unabhängig von der Schnittstelle zu steuern und kann mit 
+willkürlichen Adaptern, wie \ac{zb} der uns zur Verfügung gestellte \ac{gpib}-Adapter, 
+kommunizieren. Dies hat im Projekt den einfach Vorteil, dass das Paket wieder verwendet werden 
+kann und man beim nachrüsten Code Teile aus anderen Oszilloskop-Python-Modulen wiederverwendet 
+werden können.
+
+\inputpython{scripts/open_resource.py}{1}{14}{Open Oscilloscope Resource}{lst:open_resource}
+
+Als Beispiel kann man den \textit{open\_resource()} Code in Listing \ref{lst:open_resource} 
+betrachten, welcher auch benutzt wurde um den Port zum LC334AM Oszilloskop zu öffnen und 
+anzusteuern. Dafür wurden alle Ports mit Hilfe der von PyVisa zur Verfügung gestellten Methode 
+\textit{list\_resources()} aufgelistet und abgespeichert. 
+Da der Code aus dem LC334AM Oszilloskop Modul stammt wurde in dem oberen Beispiel alle 
+\ac{gpib}-Ports mit Hilfe einer sogenannten \textbf{List Comprehension} aus der Liste 
+herausgefiltert und abgespeichert. 
+
+Eine Listen-Abstraktion wird auch im Deutschen meist als \textbf{List Comprehension} bezeichnet 
+und ist eine elegante Methode um Mengen in Python zu definieren oder zu erzeugen. Des weiteren 
+kommt die \textbf{List Comprehension} der mathematischen Notation von Mengen sehr nahe. 
+
+In unserem Fall haben wir eine Menge von \ac{gpib}-Port Adressen definiert die als liste 
+abgespeichert wurde. Da wir in unserem Projekt nur eine \ac{gpib} Adresse zur Verfügung haben 
+dürfen können wir die Länge auf ungleich eins prüfen. Das hat im Code den Vorteil, dass zum 
+einen überprüft wird ob der Port erkannt wurde und ob das Programm zu viele erkennt was zu 
+Fehlern führen könnte. Am Ende kann die Liste dann benutzt werden, um auszuwählen welcher Port 
+geöffnet werden soll. 
+
+\section{Daten Senden und Lesen mit IEEE 488.1}
+\label{sec:send_receive}
+
+Da das \textit{PyVisa} Paket nur die Kommunikation zwischen dem Oszilloskop und dem Computer herstellt und aufrecht erhält, war eine weitere Aufgabe das suchen der Befehle die das Oszilloskop entgegen nimmt. Ein Problem dabei war das Alter des Oszilloskopes, denn es gab kaum Informationen über die Kommunikationsbefehle. Nach etwas längerem suchen wurde ich dann fündig und konnte mit Hilfe des Dokumentes \citefield{Remote}{title} die Kommandos zum auslesen der benötigen Daten herausfinden. 
+
+Ein weiteres Problem war, dass die Remote Verbindung des LC334AM Oszilloskopes noch mit dem \ac{ieee}.\textbf{1} Protokoll kommunizierte. Dieses Protokoll formalisierte nämlich nur die Mechanischen, die Elektrischen und die Basis Protokoll Parameter der \ac{gpib}-Schnittstelle, aber sagte nichts über das Format der Befehle oder der Daten aus. Die Syntax und die Formatierung der Befehle kam erst mit dem \ac{ieee}.\textbf{2} Standard.
