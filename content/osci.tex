@@ -23,8 +23,8 @@ Schnittstelle für die Kommunikation implementiert, da zum Oszilloskop auch ein 
 USB-Kabel von \ac{ni} mitgeliefert wurde. Der \ac{gpib}-Adapter von \ac{ni} ist ein 
 Industriestandard, welcher als \ac{ieee} veröffentlicht wurde.
 
-\section{Ansteuerung über GPIB und PyVisa}
-\label{sec:gpib}
+\subsection{Ansteuerung über GPIB und PyVisa}
+\label{subsec:gpib}
 
 Um die Schnittstelle über \ac{gpib} ansteuern zu können war ein Treiber, welcher auf der Seite 
 von \ac{ni} zur Verfügung stand, nötig.
@@ -57,9 +57,22 @@ einen überprüft wird ob der Port erkannt wurde und ob das Programm zu viele er
 Fehlern führen könnte. Am Ende kann die Liste dann benutzt werden, um auszuwählen welcher Port 
 geöffnet werden soll. 
 
-\section{Daten Senden und Lesen mit IEEE 488.1}
-\label{sec:send_receive}
+\subsection{Daten Senden und Lesen mit IEEE 488.1}
+\label{subsec:send_receive}
 
-Da das \textit{PyVisa} Paket nur die Kommunikation zwischen dem Oszilloskop und dem Computer herstellt und aufrecht erhält, war eine weitere Aufgabe das suchen der Befehle die das Oszilloskop entgegen nimmt. Ein Problem dabei war das Alter des Oszilloskopes, denn es gab kaum Informationen über die Kommunikationsbefehle. Nach etwas längerem suchen wurde ich dann fündig und konnte mit Hilfe des Dokumentes \citefield{Remote}{title} die Kommandos zum auslesen der benötigen Daten herausfinden. 
+Da das \textit{PyVisa} Paket nur die Kommunikation zwischen dem Oszilloskop und dem Computer herstellt und aufrecht erhält, war eine weitere Aufgabe das Suchen der Befehle die das Oszilloskop entgegen nimmt. Ein Problem dabei war das Alter des Oszilloskopes, denn es gab kaum Informationen über die Kommunikationsbefehle. Nach etwas längerem suchen wurde ich dann fündig und konnte mit Hilfe des Dokumentes \citefield{Remote_Control}{title} die Kommandos zum auslesen der benötigen Daten herausfinden. Des weiteren wurde dort angegeben mit welchem Protokoll das Oszilloskop kommuniziert, was ein weiteres Problem aufzeigte, denn die Remote Verbindung des LC334AM Oszilloskopes lief zum größten Teil noch mit dem \ac{ieee}.\textbf{1} Protokoll. Dieses Protokoll formalisierte lediglich mechanische, elektrische und Basis Protokoll Parameter der \ac{gpib}-Schnittstelle, definierte aber nicht das Format der Befehle oder dass der Daten. Die Syntax und die Formatierung der Befehle kam erst mit dem \ac{ieee}.\textbf{2} Standard. Nur wenige Standardbefehle die vom \ac{ieee}.\textbf{2}-Protokoll spezifiziert wurden, konnte das LC334AM Oszilloskop erkennen und wurden mit einem Asterisk (*) am Anfang des Befehls identifiziert. Am Ende konnte ich durch die sehr gute Dokumentation alle Befehle für die benötigten Informationen herausfinden, welche ich für das Speichern eines Bildes benötigte.
 
-Ein weiteres Problem war, dass die Remote Verbindung des LC334AM Oszilloskopes noch mit dem \ac{ieee}.\textbf{1} Protokoll kommunizierte. Dieses Protokoll formalisierte nämlich nur die Mechanischen, die Elektrischen und die Basis Protokoll Parameter der \ac{gpib}-Schnittstelle, aber sagte nichts über das Format der Befehle oder der Daten aus. Die Syntax und die Formatierung der Befehle kam erst mit dem \ac{ieee}.\textbf{2} Standard.
+
+\section{Abspeichern eines Bildes}
+\label{sec:save_pic}
+
+Das Code Listing \ref{lst:save_pic} zeigt einen sehr kurzen, modifizierten und zusammengefassten Code, welcher veranschaulichen soll wie das Abspeichern eines Bildes umgesetzt wurde. Des weiteren wird aufgezeigt wie die Daten eines Channels vom Oszilloskop in ein Bild gespeichert werden.
+
+\inputpython{scripts/save_pic.py}{1}{31}{Save Picture}{lst:save_pic}
+
+Das Oszilloskop schickt mit einem Befehl nur zusammenhanglose Daten wie \ac{zb} die Abtastpunkte der Waveform die ohne Definition der X- und Y-Achse keinerlei zusammenhängende Informationen besitzen. Um eine genaue Abbildung des Bildes auf dem Oszilloskop zu bekommen benötigte ich also mehrere Befehle. Hierbei trat das Problem auf, dass die empfangenen Daten als eine einzige Zeichenkette (engl: String) empfangen wurden und oftmals auch nicht relevante Informationen enthielten. Durch einen \ac{regex} konnten die Daten aber oftmals innerhalb weniger Zeilen herausgefiltert und in den benötigten Datentyp gespeichert werden. Die Bearbeitungen habe ich in mehrere Methoden unterteilt, um die Lesbarkeit des Codes zu erhöhen. Anschließend wurden die Daten dann zusammengesetzt und als Bild gespeichert, was im Code Listing \ref{lst:save_pic} veranschaulicht wurde. Weitere Schwierigkeiten traten auch bei der richtigen Skalierung der Achsen auf, da die Anzahl der Abtastpunkte des Oszilloskopes sich je nach Einstellung der Zeit veränderte, was anfangs zu Problemen führte jedoch durch das Einsetzten von mathematischen Formeln generisch gelöst werden konnte. 
+
+\section{Oszilloskop Module Dynamisch Laden}
+\label{sec:dynamic_load}
+
+\inputpython{scripts/load_oscilloscope_class.py}{1}{7}{Load Oscilloscope Interface Class}{lst:load_interface}
