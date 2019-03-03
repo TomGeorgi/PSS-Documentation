@@ -1,4 +1,6 @@
-# PSS-Documentation [![Build Status](https://travis-ci.org/TomGeorgi/PSS-Documentation.svg?branch=master)](https://travis-ci.org/TomGeorgi/PSS-Documentation) [![Build Status](https://travis-ci.com/TomGeorgi/PSS-Documentation.svg?token=dKCvSqTarhx4NKsGXTuG&branch=master)](https://travis-ci.com/TomGeorgi/PSS-Documentation)
+# PSS-Documentation 
+Public => [![Build Status](https://travis-ci.org/TomGeorgi/PSS-Documentation.svg?branch=master)](https://travis-ci.org/TomGeorgi/PSS-Documentation) 
+Private => [![Build Status](https://travis-ci.com/TomGeorgi/PSS-Documentation.svg?token=dKCvSqTarhx4NKsGXTuG&branch=master)](https://travis-ci.com/TomGeorgi/PSS-Documentation)
 
 
 This repository contains the documentation of my practical semestre, which I absolved in WS18/19.
