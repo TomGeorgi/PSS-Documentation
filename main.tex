@@ -102,16 +102,16 @@ Ich werde im Verlaufe dieses Berichts mehrere Aufgaben im Detail erklären.
 %| List of Figures,  	|
 %| List of Tables    	|
 %| List of Norms	 	|
-%| List of Abbreviation |
+%| List of Bibliography |
 %+----------------------+
 \begingroup
 \let\clearpage\relax
 \lstlistoflistings
 \listoffigures
 \listoftables
+\pagebreak
 \printbibliography
 \endgroup
-\pagebreak
 
 %+---------+
 %| Vorwort |
@@ -135,19 +135,24 @@ Ich werde im Verlaufe dieses Berichts mehrere Aufgaben im Detail erklären.
 %+-----------+
 %| Kapitel 3 |
 %+-----------+
-%\include{content/}
+\include{content/micbac}
 
 %+-----------+
 %|   Fazit   |
 %+-----------+
-%\include{content/fazit}
+\include{content/fazit}
+
+%+----------------------+
+%| Abkürzungsverzeichnis|
+%+----------------------+
+\include{bibliography/abbreviation}
 
 %+--------------------------+
 %| Ehrenwörtliche Erklärung |
 %+--------------------------+
-%\include{content/erklaerung}
+\include{content/erklaerung}
 
-\include{bibliography/abbreviation}
+
 
 %+==============+
 %| DOCUMENT END |

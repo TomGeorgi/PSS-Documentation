@@ -9,7 +9,7 @@ Der Kunde Diehl muss die von ihnen entwickelten Geräte auf viele bestimmte Eige
 Ereignisse \ac{bzw} auch auf Gefahren testen, welche während eines Fluges auftreten können.
 Einer dieser Tests ist der sogenannte Pin-Injection Test.
 Bei diesem Test werden die Pins eines Fluggerätes auf Störungen und auch Beschädigungen im
-Rahmen der Umweltqualitätsprüfung nach \cite{DO-160} getestet. Jeder Pin besitzt ein Interface
+Rahmen der Umweltqualitätsprüfung nach \citefield{DO-160}{note} getestet. Jeder Pin besitzt ein Interface
 zum steuern von verschiedenen im Gerät verbauten Schaltern. Da jedes Interface andere
 Eigenschaften besitzt, hat dementsprechend jedes dieser Interfaces unterschiedliche
 Anforderungen (engl: "Requirements") die getestet werden müssen.
@@ -99,19 +99,20 @@ Zeit eingespart hat.
 
 Wie schon in Kapitel \ref{sec:prj-einarbeitung} erwähnt war es mir frei zu wählen, in welcher
 Programmiersprache ich das Projekt realisieren möchte. Meine Entscheidung fiel dabei schnell
-auf \cite{Python} 3, da auch die Erfahrung mit dieser Sprache auf der Seite des Kunden sehr 
-groß war. Den Vorteil in dieser Sprache sehe ich darin, dass \cite{Python} eine sehr aktuelle 
-und dynamische Programmiersprache ist, welche sich schnell weiterentwickelt. 
+auf \citefield{Python}{note} 3, da auch die Erfahrung mit dieser Sprache auf der Seite des 
+Kunden sehr groß war. Den Vorteil in dieser Sprache sehe ich darin, dass \citefield{Python}
+{note} eine sehr aktuelle und dynamische Programmiersprache ist, welche sich schnell 
+weiterentwickelt. 
 
-Das Hauptmerkmal von \cite{Python} ist die Lesbarkeit und wird durch Code Style Richtlinien und
-Idiome realisiert. Diese Lesbarkeit wird auch \textit{Pythonic Way} genannt. Die Idiome in
-\cite{Python} lassen zukünftige Leser genau verstehen, was der Code machen soll, während die
-Code Style Richtlinien für einen einheitlichen Code sorgen.
+Das Hauptmerkmal von \citefield{Python}{note} ist die Lesbarkeit und wird durch Code Style 
+Richtlinien und Idiome realisiert. Diese Lesbarkeit wird auch \textit{Pythonic Way} genannt. 
+Die Idiome in \citefield{Python}{note} lassen zukünftige Leser genau verstehen, was der Code 
+machen soll, während die Code Style Richtlinien für einen einheitlichen Code sorgen.
 
 Die Softwareanforderung wie \ac{zb} Datensätze aus einer \ac{csv} Datei auszulesen und zu 
-verarbeiten konnte mit Hilfe der von \cite{Python} zur Verfügung gestellten \ac{api} sehr 
-schnell realisiert werden. Des weiteren standen \cite{Python} Module für das Verarbeiten von 
-\ac{micbac} Kommandos aus einem vorherigen Projekt bereits zur Verfügung.
+verarbeiten konnte mit Hilfe der von \citefield{Python}{note} zur Verfügung gestellten \ac{api} 
+sehr schnell realisiert werden. Des weiteren standen \citefield{Python}{note} Module für das 
+Verarbeiten von \ac{micbac} Kommandos aus einem vorherigen Projekt bereits zur Verfügung.
 
 
 \section{Die Erste Simulation}
@@ -130,13 +131,13 @@ Um zu garantieren, dass die Softwarequalität bestehen bleibt, habe ich auf dem 
 \label{subsec:gitlab_runner}
 
 Um den Runner nicht jedes mal beim einchecken neu aufbauen zu müssen und die Daten immer mit 
-den selben Eigenschaften eingecheckt werden, habe ich ein \cite{Docker} Image, ein 
+den selben Eigenschaften eingecheckt werden, habe ich ein \citefield{Docker}{note} Image, ein 
 Speicherabbild eines Containers, erstellt.
 
-\cite{Docker} wird zur Isolierung von Anwendungen mit Containervirtualisierung genutzt. Diese 
-Container gewährleisten die Trennung und Verwaltung der auf dem Rechner genutzten Ressourcen 
-und vereinfacht die Bereitstellung von Anwendungen, weil sich die Container leicht als Dateien 
-transportieren und installieren lassen.
+\citefield{Docker}{note} wird zur Isolierung von Anwendungen mit Containervirtualisierung 
+genutzt. Diese Container gewährleisten die Trennung und Verwaltung der auf dem Rechner 
+genutzten Ressourcen und vereinfacht die Bereitstellung von Anwendungen, weil sich die 
+Container leicht als Dateien transportieren und installieren lassen.
 
 \begin{figure}[H]
 	\centering
@@ -147,24 +148,26 @@ transportieren und installieren lassen.
 
 In Abbildung \ref{fig:pipeline} stellt die Pipeline die Schritte dar, die durchlaufen werden.
 Dazu gehört die Erstellung einer \ac{api} aus den Python Doc-Strings, die Code Kompilierung, 
-das durchlaufen der Unit Tests und das durchlaufen von \cite{Pylint}. \cite{Pylint} ist ein 
-statisches Codeanalyse Tool, das unter anderem den Code auf die Einhaltung der in \cite{PEP8} 
-beschriebenen Regeln prüft.
+das durchlaufen der Unit Tests und das durchlaufen von \citefield{Pylint}{note}. 
+\citefield{Pylint}{note} ist ein statisches Codeanalyse Tool, das unter anderem den Code auf 
+die Einhaltung der in \citefield{PEP8}{note} beschriebenen Regeln prüft.
 
 
 \subsection{Einlesen von CSV-Dateien}
 \label{subsec:read_csv}
 
-Ein großer Bestandteil des Programms waren die eingelesenen Daten, welche in einem \ac{csv}-Dateiformat abgespeichert wurden. Diese Aufgabe habe ich mittels der Klasse \textit{DictReader} 
-gelöst, welche in der \cite{Python} \ac{api} vorhanden ist. Diese Klasse liest jede Zeile der 
-\ac{csv}-Datei in ein \textit{Dictionary} \ac{bzw} den Python Datentyp \textit{dict} ein. Ein 
-\textit{Dictionary} ist eine unsortierte, veränderbare und indexierte Kollektion aus 
+Ein großer Bestandteil des Programms waren die eingelesenen Daten, welche in einem \ac{csv}-
+Dateiformat abgespeichert wurden. Diese Aufgabe habe ich mittels der Klasse \textit{DictReader} 
+gelöst, welche in der \citefield{Python}{note} \ac{api} vorhanden ist. Diese Klasse liest jede 
+Zeile der \ac{csv}-Datei in ein \textit{Dictionary} \ac{bzw} den Python Datentyp \textit{dict} 
+ein. Ein \textit{Dictionary} ist eine unsortierte, veränderbare und indexierte Kollektion aus 
 \textit{Key-Value-Paaren}. Die Klasse \textit{DictReader} nimmt die erste Zeile der \ac{csv}-
 Datei als \textit{Keys} und fügt die restlichen Zeilen als \textit{Values} ein. 
 Da der Reader beim einlesen von Daten sehr sensibel ist und bei einem falschen Format \ac{bzw} 
 bei falschen \textit{Key}-Werten oder auch bei falschen \textit{Value}-Werten direkt Fehler 
 wirft, mussten diese irgendwie abgefangen und behandelt werden. Ein Problem war das erkennen 
-und überspringen von Kommentaren. Kommentare haben in einer Datei immer mit dem \textit{\#}-Zeichen angefangen. 
+und überspringen von Kommentaren. Kommentare haben in einer Datei immer mit dem \textit{\#}-
+Zeichen angefangen. 
 \pagebreak
 
 \inputpython{scripts/read_csv.py}{1}{14}{Read From CSV-File}{lst:read_csv}
@@ -182,7 +185,9 @@ zurückgibt.
 \subsection{Erstellung einer GUI}
 \label{subsec:create_gui}
 
-Nachdem die Textuelle Simulation abgeschlossen war machte ich mich an die Erstellung einer \ac{gui}. Da vom Projekt keine Vorgaben existierten, konnte ich bei vielen selbst Entscheiden wie diese implementiert werden.
+Nachdem die Textuelle Simulation abgeschlossen war machte ich mich an die Erstellung einer 
+\ac{gui}. Da vom Projekt keine Vorgaben existierten, konnte ich bei vielen selbst Entscheiden 
+wie diese implementiert werden.
 
 \begin{figure}[H]
 	\centering
@@ -191,5 +196,11 @@ Nachdem die Textuelle Simulation abgeschlossen war machte ich mich an die Erstel
 	\label{fig:pipeline}
 \end{figure}
 
-Die Grafik \ref{fig:pipeline} zeigt die \ac{gui}, wie sie am Ende des Praktikums implementiert wurde. Die Tablle, welche die Zeilen anzeigt, kann den gerade laufenden Test markieren, anzeigen ob die vorherigen Tests erfolgreich durchgelaufen sind oder nicht, einzelne Zeilen zum Testen auswählen und die Zeilen nach einer bestimmten Spalte sortieren. 
-Die Tabelle wurde als virtuelle Tabelle implementiert. Das bedeutet, dass die Tabelle mit Hilfe der eingelesenen \ac{csv}-Datei indirekt adressiert wird und die Realisierung nicht direkt angesprochen wird. Damit war es sogar möglich eine \ac{csv}-Datei mit 1 Millionen Zeilen innerhalb von ca. 20-30 Sekunden einzulesen und anzuzeigen.
+Die Abbildung \ref{fig:pipeline} zeigt die \ac{gui}, wie sie am Ende des Praktikums 
+implementiert wurde. Die Tablle, welche die Zeilen anzeigt, kann den gerade laufenden Test 
+markieren, anzeigen ob die vorherigen Tests erfolgreich durchgelaufen sind oder nicht, einzelne 
+Zeilen zum Testen auswählen und die Zeilen nach einer bestimmten Spalte sortieren. 
+Die Tabelle wurde als virtuelle Tabelle implementiert. Das bedeutet, dass die Tabelle mit Hilfe 
+der eingelesenen \ac{csv}-Datei indirekt adressiert wird und die Realisierung nicht direkt 
+angesprochen wird. Damit war es sogar möglich eine \ac{csv}-Datei mit über 1 Millionen Zeilen 
+innerhalb von ca. 20-30 Sekunden einzulesen und anzuzeigen.
