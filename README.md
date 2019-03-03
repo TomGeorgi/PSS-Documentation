@@ -1,5 +1,7 @@
 # PSS-Documentation [![Build Status](https://travis-ci.org/TomGeorgi/PSS-Documentation.svg?branch=master)](https://travis-ci.org/TomGeorgi/PSS-Documentation)
 
+[![Build Status](https://travis-ci.com/TomGeorgi/PSS-Documentation.svg?token=dKCvSqTarhx4NKsGXTuG&branch=master)](https://travis-ci.com/TomGeorgi/PSS-Documentation)
+
 This repository contains the documentation of my practical semestre, which I absolved in WS18/19.
 Also, the main.pdf will be build via Travis-CI. The newest version can be found in [releases](https://github.com/TomGeorgi/PSS-Documentation/releases).
 
