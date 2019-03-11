@@ -4,10 +4,10 @@ services:
   - docker
 
 script:
- docker run -ti -v miktex:/miktex/.miktex -v `pwd`:/miktex/work miktex/miktex pdflatex main.tex
+ # docker run -ti -v miktex:/miktex/.miktex -v `pwd`:/miktex/work miktex/miktex pdflatex main.tex
 
- #- docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker
- #/bin/sh -c "tectonic --keep-intermediates --reruns 0 main.tex; biber main; tectonic main.tex"
+ - docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker
+  /bin/sh -c "tectonic --keep-intermediates --reruns 0 main.tex; biber main; tectonic main.tex"
   
 deploy:
     provider: releases
