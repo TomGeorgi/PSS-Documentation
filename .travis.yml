@@ -13,10 +13,8 @@ script:
   
 deploy:
     provider: releases
-    user: $GH_USERNAME
-    password: $GH_PASSW
-    #api_key:
-    #   secure: $GH_TOKEN
+    api_key:
+        secure: $GH_TOKEN
     file: 
     - $TRAVIS_BUILD_DIR/main.pdf
     skip_cleanup: true
