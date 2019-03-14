@@ -6,7 +6,7 @@ services:
 script:
 
  - docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind casperyo/latex-docker
-  /bin/sh -c "pdflatex main.tex"
+  /bin/sh -c "pdflatex main.tex; bibtex main; pdflatex main.tex"
 
  #- docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/src/tex,type=bind dxjoke/tectonic-docker
   #/bin/sh -c "tectonic --keep-intermediates --reruns 0 main.tex; biber main; tectonic main.tex"
