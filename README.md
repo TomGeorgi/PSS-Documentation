@@ -30,7 +30,7 @@ You want to get a LaTeX template ? Then visit Lorenz Bung for a [Template](https
 ### Continuous Integration
 
 - `Travis-CI`: pipeline for creating and releasing a PDF-file.
-- `Docker`: [Docker Image](https://hub.docker.com/r/dxjoke/tectonic-docker) which I use in Travis-CI to create a PDF-File from LaTeX-Files.
+- `Docker`: [Docker Image](https://hub.docker.com/r/casperyo/latex-docker) which I use in Travis-CI to create a PDF-File from LaTeX-Files.
 
 ## How to use this repository
 
